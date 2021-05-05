@@ -1,14 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
     float horizontal;
-    private float speed = 10.0f;
+    private float speed = 15.0f;
 
     public int Score;
+
+    public int Vidas = 3;
     GameObject ScoreText;
     
     // Start is called before the first frame update
@@ -16,7 +19,7 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         Score = 0;
-        ScoreText = GameObject.Find("score");
+        ScoreText = GameObject.Find("Score");
     }
 
     // Update is called once per frame
@@ -24,7 +27,6 @@ public class PlayerController : MonoBehaviour
     {
         horizontal = Input.GetAxis("Horizontal");
         ScoreText.GetComponent<Text>().text = Score.ToString();
-
 
     }
     private void FixedUpdate() {
