@@ -7,18 +7,25 @@ public class PlayerController : MonoBehaviour
     Rigidbody rb;
     float horizontal;
     private float speed = 10.0f;
+
+    public int Score;
+    GameObject ScoreText;
     
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
+        Score = 0;
+        ScoreText = GameObject.Find("score");
     }
 
     // Update is called once per frame
     void Update()
     {
         horizontal = Input.GetAxis("Horizontal");
-        // Debug.Log(rb.position);
+        ScoreText.GetComponent<Text>().text = Score.ToString();
+
+
     }
     private void FixedUpdate() {
         Vector3 position = rb.position;
@@ -39,10 +46,10 @@ public class PlayerController : MonoBehaviour
     private void OnTriggerEnter(Collider other) {
         if(other.tag == "Rock"){
             Destroy(other.gameObject);
+            Score += 1;
         }
         if(other.tag == "Power"){
-            Destroy(other.gameObject);
-            Vector3 powerup;
+            Destroy(other.gameObject);            
         }   
     }
 }
